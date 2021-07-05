@@ -1,10 +1,74 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import React, { useState, useEffect } from "react";
+import "./App.css";
 function App() {
+  const [input, setInput] = useState<string>("");
+  const [selectOption, setSelectOption] = useState<string>("isPrime");
+  const [answer, setAnswer] = useState<Boolean>(false);
+  const isPrime = (input: number) => {
+    if (input <= 3) return setAnswer(input > 1);
+    if (input % 2 === 0 || input % 3 === 0) return setAnswer(false);
+    let count = 5;
+    while (Math.pow(count, 2) <= input) {
+      if (input % count === 0 || input % (count + 2) === 0)
+        return setAnswer(false);
+      count += 6;
+    }
+    return setAnswer(true);
+  };
+  const isFibonacci = (input: number) => {
+    let a = 0;
+    let b = 1;
+    if (input === a || input === b) return setAnswer(true);
+    let c = a + b;
+    while (c <= input) {
+      if (c === input) return setAnswer(true);
+      a = b;
+      b = c;
+      c = a + b;
+    }
+    return setAnswer(false);
+  };
+  const Calculative = (input: string, selectOption: string) => {
+    switch (selectOption) {
+      case "isPrime":
+        isPrime(Number(input));
+        break;
+      case "isFibonacci":
+        isFibonacci(Number(input));
+        break;
+      default:
+        break;
+    }
+  };
+  useEffect(() => {
+    Calculative(input, selectOption);
+  }, [input, selectOption]);
   return (
-    <div>
+    <div style={{ display: "flex", overflowX: "scroll", height: "200px" }}>
+      <div style={{ width: "200px", minWidth: "200px" }}>
+        <input
+          type="string"
+          placeholder="enter any number"
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            setInput(e.target.value);
+          }}
+        />
+      </div>
+      <div style={{ minWidth: "100px", width: "100%" }}>
+        <select
+          id="lang"
+          onChange={(e) => {
+            setSelectOption(e.target.value);
+          }}
+          value={selectOption}
+        >
+          <option value="isPrime">isPrime</option>
+          <option value="isFibonacci">isFibonacci</option>
+        </select>
+      </div>
+      <div style={{ width: "300px", minWidth: "300px" }}>
+        {answer ? "true" : "false"}
+      </div>
     </div>
   );
 }
