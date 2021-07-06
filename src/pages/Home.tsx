@@ -5,7 +5,6 @@ function Home() {
     <div style={{ display: "flex", gap: "30px" }}>
       <Link to="/question1">Question1</Link>
       <Link to="/question2">Question2</Link>
-      <Link to="/question3">Question3</Link>
     </div>
   );
 }
