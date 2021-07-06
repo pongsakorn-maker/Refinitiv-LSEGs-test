@@ -4,7 +4,6 @@ import "./App.css";
 import Home from "./pages/Home";
 import Question1 from "./pages/Question1";
 import Question2 from "./pages/Question2";
-import Question3 from "./pages/Question3";
 
 function App() {
   return (
@@ -16,9 +15,6 @@ function App() {
           </Route>
           <Route path="/question2">
             <Question2 />
-          </Route>
-          <Route path="/question3">
-            <Question3 />
           </Route>
           <Route path="/">
             <Home />
