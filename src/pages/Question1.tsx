@@ -49,7 +49,7 @@ function Question1() {
     Calculative(input, selectOption);
   }, [input, selectOption]);
   return (
-    <div style={{ display: "flex", overflowX: "scroll", height: "300px" }}>
+    <div style={{ display: "flex", height: "300px", overflow: "auto" }}>
       <div style={{ width: "200px", minWidth: "200px", border: "2px solid" }}>
         <input
           type="string"
