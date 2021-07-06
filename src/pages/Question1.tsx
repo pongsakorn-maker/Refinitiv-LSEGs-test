@@ -30,23 +30,27 @@ function Question1() {
     return setAnswer(false);
   };
   useEffect(() => {
-  const Calculative = (input: string, selectOption: string) => {
-    switch (selectOption) {
-      case "isPrime":
-        isPrime(Number(input));
-        break;
-      case "isFibonacci":
-        isFibonacci(Number(input));
-        break;
-      default:
-        break;
-    }
-  };
+    const Calculative = (input: string, selectOption: string) => {
+      switch (selectOption) {
+        case "isPrime":
+          if (input === "" || input === undefined) {
+            setAnswer(false);
+          } else isPrime(Number(input));
+          break;
+        case "isFibonacci":
+          if (input === "" || input === undefined) {
+            setAnswer(false);
+          } else isFibonacci(Number(input));
+          break;
+        default:
+          break;
+      }
+    };
     Calculative(input, selectOption);
   }, [input, selectOption]);
   return (
-    <div style={{ display: "flex", overflowX: "scroll", height: "200px" }}>
-      <div style={{ width: "200px", minWidth: "200px" }}>
+    <div style={{ display: "flex", overflowX: "scroll", height: "300px" }}>
+      <div style={{ width: "200px", minWidth: "200px", border: "2px solid" }}>
         <input
           type="string"
           placeholder="enter any number"
@@ -55,7 +59,7 @@ function Question1() {
           }}
         />
       </div>
-      <div style={{ minWidth: "100px", width: "100%" }}>
+      <div style={{ minWidth: "100px", width: "100%", border: "2px solid" }}>
         <select
           id="lang"
           onChange={(e) => {
@@ -67,7 +71,7 @@ function Question1() {
           <option value="isFibonacci">isFibonacci</option>
         </select>
       </div>
-      <div style={{ width: "300px", minWidth: "300px" }}>
+      <div style={{ width: "300px", minWidth: "300px", border: "2px solid" }}>
         {answer ? "true" : "false"}
       </div>
     </div>
